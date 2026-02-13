@@ -8,8 +8,6 @@ from app.models import WordOut, WordDetail
 
 router = APIRouter(tags=["words"])
 
-LANG_COLUMNS = {"en": "translation_en", "fr": "translation_fr", "de": "translation_de"}
-
 
 @router.get("/categories/{category_name}/words", response_model=list[WordOut])
 async def list_words(
@@ -25,15 +23,23 @@ async def list_words(
     if not cat:
         raise HTTPException(404, f"Category '{category_name}' not found")
 
-    col = LANG_COLUMNS[lang]
     cursor = await db.execute(
-        f"""
-        SELECT id, word_lb, {col} AS translation, gender, audio_filename
+        """
+        SELECT
+            id,
+            word_lb,
+            CASE ?
+                WHEN 'en' THEN translation_en
+                WHEN 'fr' THEN translation_fr
+                WHEN 'de' THEN translation_de
+            END AS translation,
+            gender,
+            audio_filename
         FROM words
         WHERE category_id = ?
         ORDER BY id
         """,
-        (cat["id"],),
+        (lang, cat["id"]),
     )
     rows = await cursor.fetchall()
     return [
