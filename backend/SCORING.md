@@ -341,7 +341,7 @@ If your voice's fundamental frequency differs from the reference speaker's by 40
 
 ### A. Feature weights
 
-**File:** `feature_comparator.py`, lines 14–20
+**File:** `feature_comparator.py`, lines 13–19
 
 ```python
 WEIGHTS = {
@@ -359,16 +359,16 @@ Must sum to 1.0.
 
 | Feature | Component | Sigma | File location | More lenient suggestion |
 |---------|-----------|-------|---------------|------------------------|
-| Pitch | Contour (DTW) | 50 | `_compare_pitch`, line ~143 | 80–100 |
-| Pitch | Mean | 30 | `_compare_pitch`, line ~146 | 50–60 |
-| Pitch | Range | 40 | `_compare_pitch`, line ~150 | 40 (fine) |
-| Formants | F1/F2/F3 (DTW) | 100 | `_compare_formants`, line ~163 | 200–300 |
-| Intensity | Contour (DTW) | 10 | `_compare_intensity`, line ~186 | 15–20 |
-| Intensity | Mean | 5 | `_compare_intensity`, line ~190 | 10–15 |
-| Duration | Time ratio | 0.3 | `_compare_duration`, line ~208 | 0.3 (fine) |
-| Duration | Voiced fraction | 0.2 | `_compare_duration`, line ~218 | 0.2 (fine) |
-| Voice quality | Jitter | 0.01 | `_compare_voice_quality`, line ~231 | 0.02–0.03 |
-| Voice quality | Shimmer | 0.05 | `_compare_voice_quality`, line ~232 | 0.08–0.10 |
+| Pitch | Contour (DTW) | 50 | `_compare_pitch` | 80–100 |
+| Pitch | Mean | 30 | `_compare_pitch` | 50–60 |
+| Pitch | Range | 40 | `_compare_pitch` | 40 (fine) |
+| Formants | F1/F2/F3 (DTW) | 100 | `_compare_formants` | 200–300 |
+| Intensity | Contour (DTW) | 10 | `_compare_intensity` | 15–20 |
+| Intensity | Mean | 5 | `_compare_intensity` | 10–15 |
+| Duration | Time ratio | 0.3 | `_compare_duration` | 0.3 (fine) |
+| Duration | Voiced fraction | 0.2 | `_compare_duration` | 0.2 (fine) |
+| Voice quality | Jitter | 0.01 | `_compare_voice_quality` | 0.02–0.03 |
+| Voice quality | Shimmer | 0.05 | `_compare_voice_quality` | 0.08–0.10 |
 
 ### C. Sub-feature weights
 

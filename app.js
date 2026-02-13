@@ -54,7 +54,20 @@ function renderCategories(categories) {
     card.setAttribute("tabindex", "0");
 
     const emoji = CATEGORY_EMOJI[cat.name] || "📚";
-    card.innerHTML = `<span class="emoji">${emoji}</span> <span>${cat.display_name}</span><br><span class="small">${cat.word_count} word${cat.word_count !== 1 ? "s" : ""}</span>`;
+    const emojiSpan = document.createElement("span");
+    emojiSpan.className = "emoji";
+    emojiSpan.textContent = emoji;
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = cat.display_name;
+    const lineBreak = document.createElement("br");
+    const countSpan = document.createElement("span");
+    countSpan.className = "small";
+    countSpan.textContent = `${cat.word_count} word${cat.word_count !== 1 ? "s" : ""}`;
+    card.appendChild(emojiSpan);
+    card.appendChild(document.createTextNode(" "));
+    card.appendChild(nameSpan);
+    card.appendChild(lineBreak);
+    card.appendChild(countSpan);
 
     const go = () => {
       const { lang, difficulty } = getState();

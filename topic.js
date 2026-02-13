@@ -97,7 +97,7 @@ function updateUI() {
     const labels = { en: "English", fr: "French", de: "German" };
     const label = labels[TARGET_LANG] || "English";
     const translation = word.translation || "";
-    meaningText.innerHTML = `Translation (${label}): <b>${translation}</b>`;
+    meaningText.textContent = `Translation (${label}): ${translation}`;
   }
 
   // Audio-only mode hides word + meaning
